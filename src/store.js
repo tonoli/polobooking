@@ -1,7 +1,15 @@
 import { createStore, applyMiddleware } from "redux";
 import reduxThunk from "redux-thunk";
+
 import rootReducer from "reducers/rootReducer";
-function configureStore(state = { authState: {}, statCardState: {} }) {
+
+const defaultState = {
+  authState: {},
+  statCardState: {}
+};
+
+function configureStore(state) {
   return createStore(rootReducer, state, applyMiddleware(reduxThunk));
 }
-export default configureStore;
+
+export default configureStore(defaultState);
