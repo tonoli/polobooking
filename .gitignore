@@ -1,5 +1,6 @@
 .env
 .idea
+/src/firebaseConfig.js
 /build
 /node_modules
 package-lock.json
