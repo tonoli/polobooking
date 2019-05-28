@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+
 import { Route, Switch } from "react-router-dom";
 // reactstrap components
 import { Container } from "reactstrap";
@@ -43,6 +46,9 @@ class Admin extends React.Component {
     return "Brand";
   };
   render() {
+    if (!this.props.authState.loggedIn) {
+      return <Redirect to="/auth/login" />;
+    }
     return (
       <>
         <Sidebar
@@ -69,4 +75,10 @@ class Admin extends React.Component {
   }
 }
 
-export default Admin;
+const mapStateToProps = state => ({
+  ...state
+});
+export default connect(
+  mapStateToProps,
+  {}
+)(Admin);

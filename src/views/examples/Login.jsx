@@ -1,6 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
+import loginAction from "actions/loginAction";
 
-// reactstrap components
 import {
   Button,
   Card,
@@ -17,6 +18,15 @@ import {
 } from "reactstrap";
 
 class Login extends React.Component {
+  state = {
+    email: "",
+    password: ""
+  };
+  onChange = (stateName, value) => {
+    this.setState({
+      [stateName]: value
+    });
+  };
   render() {
     return (
       <>
@@ -69,7 +79,11 @@ class Login extends React.Component {
                         <i className="ni ni-email-83" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Email" type="email" />
+                    <Input
+                      placeholder="Email"
+                      type="email"
+                      onChange={e => this.onChange("email", e.target.value)}
+                    />
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
@@ -79,7 +93,11 @@ class Login extends React.Component {
                         <i className="ni ni-lock-circle-open" />
                       </InputGroupText>
                     </InputGroupAddon>
-                    <Input placeholder="Password" type="password" />
+                    <Input
+                      placeholder="Password"
+                      type="password"
+                      onChange={e => this.onChange("password", e.target.value)}
+                    />
                   </InputGroup>
                 </FormGroup>
                 <div className="custom-control custom-control-alternative custom-checkbox">
@@ -96,7 +114,17 @@ class Login extends React.Component {
                   </label>
                 </div>
                 <div className="text-center">
-                  <Button className="my-4" color="primary" type="button">
+                  <Button
+                    className="my-4"
+                    color="primary"
+                    type="button"
+                    onClick={() =>
+                      this.props.loginAction(
+                        this.state.email,
+                        this.state.password
+                      )
+                    }
+                  >
                     Sign in
                   </Button>
                 </div>
@@ -129,4 +157,13 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+  ...state
+});
+const mapDispatchToProps = dispatch => ({
+  loginAction: (email, password) => dispatch(loginAction(email, password))
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login);
