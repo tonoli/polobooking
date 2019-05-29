@@ -8,7 +8,7 @@ const databaseRef = firebase.database().ref();
 // automatically create it
 const userDetailsRef = databaseRef.child("user-details");
 
-const registerAction = (name, email, password) => async dispatch => {
+const registerEmailAction = (name, email, password) => async dispatch => {
   // firebase offers us this function createUserWithEmailAndPassword
   // which will automatically create the user for us
   // it only has two arguments, the email and the password
@@ -31,4 +31,4 @@ const registerAction = (name, email, password) => async dispatch => {
       alert(error);
     });
 };
-export default registerAction;
+export default registerEmailAction;

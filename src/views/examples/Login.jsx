@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import loginAction from "actions/loginAction";
+import loginEmailAction from "actions/loginEmailAction";
 
 // reactstrap components
 import {
@@ -120,7 +120,7 @@ class Login extends React.Component {
                     color="primary"
                     type="button"
                     onClick={() =>
-                      this.props.loginAction(
+                      this.props.loginEmailAction(
                         this.state.email,
                         this.state.password
                       )
@@ -162,7 +162,7 @@ const mapStateToProps = state => ({
   ...state
 });
 const mapDispatchToProps = dispatch => ({
-  loginAction: (email, password) => dispatch(loginAction(email, password))
+  loginEmailAction: (email, password) => dispatch(loginEmailAction(email, password))
 });
 export default connect(
   mapStateToProps,

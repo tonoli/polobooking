@@ -1,6 +1,6 @@
 import firebase from "firebaseConfig";
 
-const loginAction = (email, password) => async dispatch => {
+const loginEmailAction = (email, password) => async dispatch => {
   // firebase offers us this function signInWithEmailAndPassword
   // which will automatically create the user for us
   // it only has two arguments, the email and the password
@@ -24,4 +24,4 @@ const loginAction = (email, password) => async dispatch => {
       alert(error);
     });
 };
-export default loginAction;
+export default loginEmailAction;

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import registerAction from "actions/registerAction";
+import registerEmailAction from "actions/registerEmailAction";
 
 // reactstrap components
 import {
@@ -150,7 +150,7 @@ class Register extends React.Component {
                     color="primary"
                     type="button"
                     onClick={() =>
-                      this.props.registerAction(
+                      this.props.registerEmailAction(
                         this.state.name,
                         this.state.email,
                         this.state.password
@@ -173,8 +173,8 @@ const mapStateToProps = state => ({
   ...state
 });
 const mapDispatchToProps = dispatch => ({
-  registerAction: (name, email, password) =>
-    dispatch(registerAction(name, email, password))
+  registerEmailAction: (name, email, password) =>
+    dispatch(registerEmailAction(name, email, password))
 });
 export default connect(
   mapStateToProps,
